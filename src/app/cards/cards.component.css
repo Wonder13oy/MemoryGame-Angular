@@ -1,0 +1,37 @@
+* {
+  height: 20vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-row-gap: 15px;
+}
+
+/* .cards {
+  height: 20vh;
+  margin: 5px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.cards:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.cards.flip {
+  transform: rotateY(180deg);
+} */
+
+.backFace,
+.frontFace {
+  height: 20vh;
+  padding: 10px;
+  position: absolute;
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+
+.frontFace {
+  transform: rotateY(180deg);
+}

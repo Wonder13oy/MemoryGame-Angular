@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CARDS } from './../cardPack';
 
 @Component({
   selector: 'app-cards',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
+  cards = CARDS;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
