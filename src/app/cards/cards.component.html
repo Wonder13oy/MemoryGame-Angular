@@ -3,7 +3,8 @@
     *ngFor="let card of cards"
     class="card-container"
     [class.flip]="card === selectedCard"
-    (click)="flipCard(card)"
+    (click)="onSelect(card)"
+    id="{{ card.id }}"
   >
     <img src="{{ card.url }}" alt="{{ card.name }}" class="frontFace" />
     <img
