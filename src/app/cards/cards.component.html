@@ -1,12 +1,15 @@
 <ul class="cards">
-  <li *ngFor="let card of cards">
-    <div class="card-container" id="{{ card.id }}">
-      <img src="{{ card.url }}" alt="{{ card.name }}" class="frontFace" />
-      <img
-        src="./../../assets/pics/avengers_3.jpg"
-        alt="Avengers"
-        class="backFace"
-      />
-    </div>
+  <li
+    *ngFor="let card of cards"
+    class="card-container"
+    [class.flip]="card === selectedCard"
+    (click)="flipCard(card)"
+  >
+    <img src="{{ card.url }}" alt="{{ card.name }}" class="frontFace" />
+    <img
+      src="./../../assets/pics/avengers_3.jpg"
+      alt="Avengers"
+      class="backFace"
+    />
   </li>
 </ul>

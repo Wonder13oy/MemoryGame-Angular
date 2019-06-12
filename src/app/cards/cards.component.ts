@@ -10,22 +10,18 @@ import { timeout } from 'q';
 })
 export class CardsComponent implements OnInit {
   cards = CARDS;
-  firstCard;
-  secondCard;
-  hasFlippedCard: boolean;
+  selectedCard: Card;
 
   constructor() {}
 
-  ngOnInit() {
-    const cardPack = document.querySelectorAll('.card-container');
-    // cardPack.forEach((card) => card.addEventListener('click', this.flipCard));
-  }
+  ngOnInit() {}
 
-  flipCard(card: number): void {
-    console.log(this);
-    this.firstCard = setTimeout(() => {
-      this.checkMatch();
-    }, 1000);
+  flipCard(card: Card): void {
+    this.selectedCard = card;
+    console.log(this.selectedCard);
+    // this.firstCard = setTimeout(() => {
+    //   this.checkMatch();
+    // }, 1000);
   }
 
   checkMatch() {}
