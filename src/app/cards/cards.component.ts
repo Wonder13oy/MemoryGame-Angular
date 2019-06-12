@@ -14,18 +14,16 @@ export class CardsComponent implements OnInit {
   secondCard;
   hasFlippedCard: boolean;
 
-  constructor() {
-    this.hasFlippedCard = false;
+  constructor() {}
+
+  ngOnInit() {
     const cardPack = document.querySelectorAll('.card-container');
-    cardPack.forEach((card) => card.addEventListener('click', this.flipCard));
+    // cardPack.forEach((card) => card.addEventListener('click', this.flipCard));
   }
 
-  ngOnInit() {}
-
-  flipCard(): void {
-    this.firstCard.classList.toggle('flip');
-
-    setTimeout(() => {
+  flipCard(card: number): void {
+    console.log(this);
+    this.firstCard = setTimeout(() => {
       this.checkMatch();
     }, 1000);
   }
