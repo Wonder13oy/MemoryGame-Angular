@@ -5,31 +5,34 @@
   grid-row-gap: 15px;
 }
 
-/* .cards {
+.card-container {
   height: 20vh;
-  margin: 5px;
   position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform 0.5s;
 }
 
-.cards:active {
+.card-container:active {
   transform: scale(0.97);
   transition: transform 0.2s;
 }
 
-.cards.flip {
+.card-container.flip {
   transform: rotateY(180deg);
-} */
+}
 
 .backFace,
 .frontFace {
   height: 20vh;
-  padding: 10px;
-  position: absolute;
+  margin: 5px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
   border-radius: 5px;
+  transition: transform 0.5s;
   backface-visibility: hidden;
+  cursor: pointer;
 }
 
 .frontFace {
