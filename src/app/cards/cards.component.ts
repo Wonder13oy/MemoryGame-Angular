@@ -9,30 +9,18 @@ import { timeout } from 'q';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
-  cards = CARDS;
-  selectedCard: Card;
+  card: Card = {
+    id: 1,
+    name: 'Thor',
+    url: './../assets/pics/thor.jpg',
+    clicked: false
+  };
 
-  constructor() {
-    document
-      .querySelectorAll('.card-container')
-      .forEach((card) => card.addEventListener('click', this.flipCard));
-  }
+  constructor() {}
 
   ngOnInit() {}
 
-  onSelect(card: Card): void {
-    this.selectedCard = card;
-  }
-
   flipCard(): void {
-    document
-      .querySelector(`#${this.selectedCard.id}`)
-      .removeEventListener('click', this.flipCard);
-    console.log(this.selectedCard);
-    // this.firstCard = setTimeout(() => {
-    //   this.checkMatch();
-    // }, 1000);
+    this.card.clicked = !this.card.clicked;
   }
-
-  checkMatch() {}
 }

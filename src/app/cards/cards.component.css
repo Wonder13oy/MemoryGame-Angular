@@ -5,15 +5,15 @@
   grid-row-gap: 15px;
 }
 
-.card-container {
-  height: 20vh;
+div {
+  height: calc(25% - 5px);
   position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform 0.5s;
 }
 
-.card-container:active {
+div:active {
   transform: scale(0.97);
   transition: transform 0.2s;
 }
