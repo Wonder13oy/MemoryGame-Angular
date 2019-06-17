@@ -13,6 +13,7 @@ export class CardsComponent implements OnInit {
   cards: Card[] = CARDS;
   comparedCards: Card[] = [];
   previousCard: Card;
+  matches: number = 0;
 
   constructor() {}
 
@@ -45,7 +46,9 @@ export class CardsComponent implements OnInit {
   checkMatch() {
     if (this.comparedCards[0].name === this.comparedCards[1].name) {
       //This is a match
+      this.matches++;
       console.log('MATCH');
+      console.log(this.matches);
     } else {
       //This is not a match
       this.comparedCards.forEach((card) => (card.clicked = !card.clicked));
