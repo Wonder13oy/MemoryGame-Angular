@@ -1,10 +1,16 @@
 <section class="cards">
-  <div [ngClass]="{ flip: card.clicked }" (click)="flipCard()">
-    <img src="{{ card.url }}" alt="{{ card.name }}" class="frontFace" />
-    <img
-      src="./../../assets/pics/avengers_3.jpg"
-      alt="Avengers"
-      class="backFace"
-    />
-  </div>
+  <span *ngFor="let card of cards">
+    <div
+      [ngClass]="{ flip: card.clicked }"
+      (click)="flipCard(card)"
+      id="{{ card.name }}"
+    >
+      <img src="{{ card.url }}" alt="{{ card.name }}" class="frontFace" />
+      <img
+        src="./../../assets/pics/avengers_3.jpg"
+        alt="Avengers"
+        class="backFace"
+      />
+    </div>
+  </span>
 </section>
