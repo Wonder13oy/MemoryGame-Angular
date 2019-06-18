@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./display-screen.component.css']
 })
 export class DisplayScreenComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  reloadPage(): void {
+    console.log('Page reloading');
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   }
-
 }

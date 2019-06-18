@@ -17,10 +17,11 @@ export class CardsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.shuffleCards(this.cards);
+  }
 
   flipCard(card: Card): void {
-    console.log(this);
     this.previousCard = this.card;
     this.card = card;
 
@@ -29,11 +30,13 @@ export class CardsComponent implements OnInit {
       return;
     }
 
-    // if (this.card.clicked === true) {
+    if (this.comparedCards.length >= 2) {
+      this.comparedCards = [];
+      return;
+    }
     this.comparedCards.push(this.card);
-    console.log(this.comparedCards);
-    // }
 
+    //Toggle whether the card is clicked or not
     this.card.clicked = !this.card.clicked;
 
     //Only two cards are selected
@@ -48,14 +51,20 @@ export class CardsComponent implements OnInit {
     if (this.comparedCards[0].name === this.comparedCards[1].name) {
       //This is a match
       this.matches++;
-      console.log('MATCH');
-      console.log(this.matches);
     } else {
       //This is not a match
       this.comparedCards.forEach((card) => (card.clicked = !card.clicked));
-
-      console.log('NO MATCH');
     }
     this.comparedCards = [];
+  }
+
+  //Randomise cards' postions
+  shuffleCards(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
   }
 }
