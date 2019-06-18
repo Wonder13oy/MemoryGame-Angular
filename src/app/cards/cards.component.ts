@@ -20,6 +20,7 @@ export class CardsComponent implements OnInit {
   ngOnInit() {}
 
   flipCard(card: Card): void {
+    console.log(this);
     this.previousCard = this.card;
     this.card = card;
 

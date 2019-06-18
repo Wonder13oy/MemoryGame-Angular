@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  position: relative;
+}
+body.pop-up {
+  background: #222;
+}
+
+* {
+  font-family: Calibri, sans-serif;
+  font-weight: normal;
+  color: #fff;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+#pop-up {
+  position: relative;
+  left: 250px;
+  top: -500px;
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  animation: drop 2s linear forwards;
+}
+
+#pop-up .container {
+  background: #012d57;
+  padding: 30px;
+  border-radius: 15px;
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  color: #000;
+  border-radius: 15px;
+}
+
+/* Drop Down Animation */
+@keyframes drop {
+  0% {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(700px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(650px);
+    opacity: 1;
+  }
+}

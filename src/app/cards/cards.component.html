@@ -3,6 +3,7 @@
     <div
       [ngClass]="{ flip: card.clicked }"
       (click)="flipCard(card)"
+      class="card"
       id="{{ card.name }}"
     >
       <img src="{{ card.url }}" alt="{{ card.name }}" class="frontFace" />
@@ -14,3 +15,7 @@
     </div>
   </span>
 </section>
+
+<div id="display-message" *ngIf="matches === 15">
+  <app-display-screen></app-display-screen>
+</div>
