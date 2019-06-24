@@ -1,8 +1,7 @@
 <section class="cards">
-  <span *ngFor="let card of cards">
+  <span *ngFor="let card of cards" (click)="flipCard(card)">
     <div
-      [ngClass]="{ flip: card.clicked }"
-      (click)="flipCard(card)"
+      [ngClass]="card.clicked ? { flip: card.clicked } : ''"
       class="card"
       id="{{ card.name }}"
     >

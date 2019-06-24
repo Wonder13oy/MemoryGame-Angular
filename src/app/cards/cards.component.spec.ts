@@ -33,7 +33,7 @@ describe('CardsComponent', () => {
     expect(array.length).toBe(2);
   });
 
-  fit('array should only allow 2 cards', () => {
+  xit('array should only allow 2 cards', () => {
     let array = component.comparedCards;
     array.push(cards[0]);
     array.push(cards[1]);

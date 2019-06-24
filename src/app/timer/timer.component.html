@@ -3,6 +3,8 @@
   rel="stylesheet"
 />
 
-<div id="time">
-  2:00
+<div id="time" [ngClass]="{ turnOrange: minLeft, turnRed: secLeft }">
+  --:--
 </div>
+
+<button (click)="startCountDown()">start</button>

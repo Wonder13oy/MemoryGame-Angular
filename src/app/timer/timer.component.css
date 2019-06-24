@@ -1,10 +1,10 @@
 * {
   box-sizing: border-box;
-  margin: 0;
+  margin: auto;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -12,13 +12,26 @@
 }
 
 div {
-  background-color: rgba(0, 0, 255, 10);
+  background-color: rgba(0, 200, 5, 10);
+  border-radius: 8px;
   height: 50px;
-  width: 100px;
+  width: 120px;
+}
+
+button {
+  color: black;
 }
 
 #time {
   font-size: 3rem;
+}
+
+.turnOrange {
+  background-color: orangered;
+}
+
+.turnRed {
+  background-color: red;
 }
 
 @media (max-width: 700) {

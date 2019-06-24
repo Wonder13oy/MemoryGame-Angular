@@ -3,4 +3,5 @@ export class Card {
   name: string;
   url: string;
   clicked: boolean;
+  matched: boolean;
 }

@@ -9,7 +9,7 @@ import { timeout } from 'q';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
-  card: Card;
+  firstCard: Card;
   cards: Card[] = CARDS;
   comparedCards: Card[] = [];
   previousCard: Card;
@@ -22,22 +22,21 @@ export class CardsComponent implements OnInit {
   }
 
   flipCard(card: Card): void {
-    this.previousCard = this.card;
-    this.card = card;
-
-    //Make sure same card not selected twice
-    if (this.previousCard === this.card) {
+    if (card.clicked) {
       return;
     }
+    this.previousCard = this.firstCard;
+    this.firstCard = card;
 
+    //Two different cards are chosen
     if (this.comparedCards.length >= 2) {
       this.comparedCards = [];
       return;
     }
-    this.comparedCards.push(this.card);
+    this.comparedCards.push(this.firstCard);
 
     //Toggle whether the card is clicked or not
-    this.card.clicked = !this.card.clicked;
+    this.firstCard.clicked = true;
 
     //Only two cards are selected
     if (this.comparedCards.length == 2) {
@@ -50,6 +49,9 @@ export class CardsComponent implements OnInit {
   checkMatch() {
     if (this.comparedCards[0].name === this.comparedCards[1].name) {
       //This is a match
+      this.comparedCards.forEach((card) => {
+        card.matched = true;
+      });
       this.matches++;
     } else {
       //This is not a match

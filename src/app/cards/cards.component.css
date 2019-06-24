@@ -2,12 +2,13 @@
   height: 20vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-row-gap: 15px;
+  grid-row-gap: 1px;
+  grid-column-gap: 1px;
 }
 
 .card {
   height: calc(25% - 5px);
-  position: relative;
+  position: absolute;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform 0.5s;
@@ -20,6 +21,10 @@
 
 .flip {
   transform: rotateY(180deg);
+}
+
+.notFlip {
+  transform: none;
 }
 
 .backFace,
