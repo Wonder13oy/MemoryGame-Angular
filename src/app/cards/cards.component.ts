@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from './../cardModal';
 import { CARDS } from './../cardPack';
-import { timeout } from 'q';
+import { TimerComponent } from './../timer/timer.component';
 
 @Component({
   selector: 'app-cards',
@@ -14,11 +14,13 @@ export class CardsComponent implements OnInit {
   comparedCards: Card[] = [];
   previousCard: Card;
   matches: number = 0;
+  timer: TimerComponent;
 
   constructor() {}
 
   ngOnInit() {
     this.shuffleCards(this.cards);
+    this.timer = new TimerComponent();
   }
 
   flipCard(card: Card): void {
@@ -27,6 +29,13 @@ export class CardsComponent implements OnInit {
     }
     this.previousCard = this.firstCard;
     this.firstCard = card;
+
+    //When all cards matched, timer is stopped
+    if (this.matches === 15) {
+      console.log('All cards are matched');
+
+      this.timer.stopCountDown();
+    }
 
     //Two different cards are chosen
     if (this.comparedCards.length >= 2) {

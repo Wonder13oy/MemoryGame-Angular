@@ -12,12 +12,13 @@ export class TimerComponent implements OnInit {
   private sec;
   private minLeft = false;
   private secLeft = false;
+  private counter;
 
   constructor() {
-    this.min = 1;
-    this.sec = 10;
+    this.min = 2;
+    this.sec = 60;
 
-    // this.startCountDown();
+    this.startCountDown();
   }
 
   ngOnInit() {
@@ -28,28 +29,36 @@ export class TimerComponent implements OnInit {
   startCountDown(): void {
     console.log('Starting count down...');
 
-    let counter = setInterval(() => {
+    this.counter = setInterval(() => {
       this.sec--;
       this.time.innerText = this.getTime();
+
+      //End of the timer
+      if (this.getTime() === '00:00') {
+        this.stopCountDown();
+      }
+
       if (this.sec === 0) {
         this.min--;
         this.sec = 60;
       }
 
+      //Turn to timer Orange
       if (this.min < 1) {
-        // this.secLeft = true;
         this.minLeft = true;
       }
 
+      //Turn to timer Red
       if (this.sec < 30 && this.min < 1) {
         this.minLeft = false;
         this.secLeft = true;
       }
-
-      if (this.sec === 0 && this.min === 0) {
-        clearInterval(counter);
-      }
     }, 1000);
+  }
+
+  stopCountDown(): void {
+    clearInterval(this.counter);
+    console.log('Count down stopped');
   }
 
   //Time
@@ -63,20 +72,12 @@ export class TimerComponent implements OnInit {
   }
 
   //Minutes
-  getMinutes(): number {
-    return parseInt(this.min);
-  }
-
-  setMinutes(min: number): void {
+  private setMinutes(min: number): void {
     this.min = min;
   }
 
   //Seconds
-  getSeconds(): number {
-    return this.sec;
-  }
-
-  setSeconds(sec: number) {
+  private setSeconds(sec: number) {
     if (sec >= 60 && this.min !== 0) {
       this.sec = sec % 60;
       this.min = Math.floor(sec / 60);
