@@ -13,7 +13,7 @@ export class CardsComponent implements OnInit {
   cards: Card[] = CARDS;
   comparedCards: Card[] = [];
   previousCard: Card;
-  matches: number = 0;
+  matches: number = 15;
   timer: TimerComponent;
 
   constructor() {}
