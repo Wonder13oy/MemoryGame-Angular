@@ -4,7 +4,7 @@
   [stopTimer]="wonGame"
 ></app-timer>
 <app-cards
-  [flipAllCards]="isTimesUp"
+  [isTimesUp]="isTimesUp"
   (cardsMatchedEvent)="wonGame = $event"
 ></app-cards>
 

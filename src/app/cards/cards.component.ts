@@ -19,18 +19,12 @@ export class CardsComponent implements OnInit {
   matches: number = 0;
 
   //Component interaction
-  @Input() flipAllCards: boolean;
+  @Input() isTimesUp: boolean = false;
   @Output() public cardsMatchedEvent: EventEmitter<
     Boolean
   > = new EventEmitter();
 
-  constructor() {
-    if (this.flipAllCards) {
-      this.cards.forEach(card => {
-        card.clicked = true;
-      });
-    }
-  }
+  constructor() {}
 
   ngOnInit() {
     this.cardData = new CardsService();
