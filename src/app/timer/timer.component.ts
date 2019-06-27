@@ -17,8 +17,8 @@ export class TimerComponent implements OnInit {
   @Output() timesUpEvent: EventEmitter<Boolean> = new EventEmitter();
 
   constructor() {
-    this.min = 0;
-    this.sec = 10;
+    this.min = 2;
+    this.sec = 60;
 
     this.startCountDown();
   }

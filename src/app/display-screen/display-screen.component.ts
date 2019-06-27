@@ -7,8 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DisplayScreenComponent implements OnInit {
   message: string;
-  isTimeUp: boolean = false;
   @Input() showMessage: boolean;
+  @Input() isTimesUp: boolean = false;
 
   constructor() {}
 
@@ -22,7 +22,7 @@ export class DisplayScreenComponent implements OnInit {
   }
 
   getMessage(): string {
-    if (this.showMessage) return this.losingMessage();
+    if (this.isTimesUp) return this.losingMessage();
 
     return this.winningMessage();
   }

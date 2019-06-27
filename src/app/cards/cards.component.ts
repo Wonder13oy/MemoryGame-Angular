@@ -40,13 +40,6 @@ export class CardsComponent implements OnInit {
     this.previousCard = this.firstCard;
     this.firstCard = card;
 
-    //When all cards matched, timer is stopped
-    if (this.matches === 15) {
-      console.log('All cards are matched');
-
-      this.cardsMatchedEvent.emit(true);
-    }
-
     //Two different cards are chosen
     if (this.comparedCards.length >= 2) {
       this.comparedCards = [];
@@ -61,7 +54,14 @@ export class CardsComponent implements OnInit {
     if (this.comparedCards.length == 2) {
       setTimeout(() => {
         this.checkMatch();
-      }, 500);
+
+        //When all cards matched, timer is stopped
+        if (this.matches === 15) {
+          console.log('All cards are matched');
+
+          this.cardsMatchedEvent.emit(true);
+        }
+      }, 400);
     }
   }
 

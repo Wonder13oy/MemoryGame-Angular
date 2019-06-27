@@ -23,7 +23,7 @@ p {
   width: 500px;
   margin: auto;
   text-align: center;
-  animation: drop 2s linear forwards;
+  animation: drop 1s linear forwards;
 }
 
 .pop-up .container {
