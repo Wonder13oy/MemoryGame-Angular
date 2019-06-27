@@ -1,7 +1,7 @@
 <section class="cards">
   <span *ngFor="let card of cards" (click)="flipCard(card)">
     <div
-      [ngClass]="card.clicked ? { flip: card.clicked } : ''"
+      [ngClass]="{ flip: card.clicked || isTimesUp }"
       class="card"
       id="{{ card.name }}"
     >
@@ -14,7 +14,3 @@
     </div>
   </span>
 </section>
-
-<div id="display-message" *ngIf="matches === 15">
-  <app-display-screen></app-display-screen>
-</div>

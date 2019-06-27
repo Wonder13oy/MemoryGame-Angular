@@ -1,41 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Card } from './../cardModal';
 import { CARDS } from './../cardPack';
-import { TimerComponent } from './../timer/timer.component';
+import { CardsService } from './../cards.service';
 
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
-  styleUrls: ['./cards.component.css']
+  styleUrls: ['./cards.component.css'],
 })
 export class CardsComponent implements OnInit {
+  //Card variables
   firstCard: Card;
-  cards: Card[] = CARDS;
+  cards: Card[];
+  cardData: CardsService;
   comparedCards: Card[] = [];
   previousCard: Card;
+
   matches: number = 0;
-  timer: TimerComponent;
+
+  //Component interaction
+  @Input() isTimesUp: boolean = false;
+  @Output() public cardsMatchedEvent: EventEmitter<
+    Boolean
+  > = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {
+    this.cardData = new CardsService();
+    this.cards = this.cardData.getCards();
     this.shuffleCards(this.cards);
-    this.timer = new TimerComponent();
   }
 
   flipCard(card: Card): void {
     if (card.clicked) {
       return;
     }
+
     this.previousCard = this.firstCard;
     this.firstCard = card;
-
-    //When all cards matched, timer is stopped
-    if (this.matches === 15) {
-      console.log('All cards are matched');
-
-      this.timer.stopCountDown();
-    }
 
     //Two different cards are chosen
     if (this.comparedCards.length >= 2) {
@@ -51,20 +54,27 @@ export class CardsComponent implements OnInit {
     if (this.comparedCards.length == 2) {
       setTimeout(() => {
         this.checkMatch();
-      }, 500);
+
+        //When all cards matched, timer is stopped
+        if (this.matches === 15) {
+          console.log('All cards are matched');
+
+          this.cardsMatchedEvent.emit(true);
+        }
+      }, 400);
     }
   }
 
   checkMatch() {
     if (this.comparedCards[0].name === this.comparedCards[1].name) {
       //This is a match
-      this.comparedCards.forEach((card) => {
+      this.comparedCards.forEach(card => {
         card.matched = true;
       });
       this.matches++;
     } else {
       //This is not a match
-      this.comparedCards.forEach((card) => (card.clicked = !card.clicked));
+      this.comparedCards.forEach(card => (card.clicked = !card.clicked));
     }
     this.comparedCards = [];
   }

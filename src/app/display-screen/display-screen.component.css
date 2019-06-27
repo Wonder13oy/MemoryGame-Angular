@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: auto;
   position: relative;
 }
 body.pop-up {
@@ -16,17 +16,17 @@ p {
   margin-bottom: 20px;
 }
 
-#pop-up {
+.pop-up {
   position: relative;
-  left: 250px;
+  left: calc(80% - 5px);
   top: -500px;
   width: 500px;
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
-  animation: drop 2s linear forwards;
+  animation: drop 1s linear forwards;
 }
 
-#pop-up .container {
+.pop-up .container {
   background: #012d57;
   padding: 30px;
   border-radius: 15px;

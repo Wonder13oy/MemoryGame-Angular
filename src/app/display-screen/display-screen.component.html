@@ -1,8 +1,12 @@
-<div id="pop-up">
+<div class="pop-up" *ngIf="isTimesUp">
   <div class="container">
-    <p>
-      Congratulations!
-    </p>
+    <p>{{ losingMessage() }}</p>
     <button id="try-again" (click)="reloadPage()">Try Again</button>
+  </div>
+</div>
+<div class="pop-up" *ngIf="showMessage">
+  <div class="container">
+    <p>{{ winningMessage() }}</p>
+    <button id="try-again" (click)="reloadPage()">Play Again</button>
   </div>
 </div>

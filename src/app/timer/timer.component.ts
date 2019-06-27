@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css']
+  styleUrls: ['./timer.component.css'],
 })
 export class TimerComponent implements OnInit {
   //DOM variables
@@ -13,6 +13,8 @@ export class TimerComponent implements OnInit {
   private minLeft = false;
   private secLeft = false;
   private counter;
+  @Input() stopTimer: Boolean;
+  @Output() timesUpEvent: EventEmitter<Boolean> = new EventEmitter();
 
   constructor() {
     this.min = 2;
@@ -34,8 +36,13 @@ export class TimerComponent implements OnInit {
       this.time.innerText = this.getTime();
 
       //End of the timer
+      if (this.stopTimer == true) {
+        this.stopCountDown();
+      }
+
       if (this.getTime() === '00:00') {
         this.stopCountDown();
+        this.timesUpEvent.emit(true);
       }
 
       if (this.sec === 0) {
