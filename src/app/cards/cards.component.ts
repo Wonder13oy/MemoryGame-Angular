@@ -27,7 +27,7 @@ export class CardsComponent implements OnInit {
   constructor() {
     this.turns = 0;
     this.clicks = 0;
-    this.matches = 14;
+    this.matches = 0;
   }
 
   ngOnInit() {

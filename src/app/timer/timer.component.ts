@@ -68,13 +68,22 @@ export class TimerComponent implements OnInit {
 
   stopCountDown(): void {
     clearInterval(this.counter);
-    this.min = 1 - this.min;
-    this.sec = 60 - this.sec;
-
-    this.timeTaken.emit(`${this.addZero(this.min)}:${this.addZero(this.sec)}`);
+    this.calculateTimeRemaining();
     console.log(`It took ${this.addZero(this.min)}:${this.addZero(this.sec)}`);
 
     console.log('Count down stopped');
+  }
+
+  calculateTimeRemaining(): void {
+    this.min = 1 - this.min;
+    this.sec = 60 - this.sec;
+
+    if (this.sec === 60) {
+      this.min++;
+      this.sec = 0;
+    }
+
+    this.timeTaken.emit(`${this.addZero(this.min)}:${this.addZero(this.sec)}`);
   }
 
   //Time
