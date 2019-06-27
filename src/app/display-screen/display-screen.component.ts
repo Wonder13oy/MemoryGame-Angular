@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-display-screen',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DisplayScreenComponent implements OnInit {
   message: string;
   isTimeUp: boolean = false;
+  @Input() showMessage: boolean;
 
   constructor() {}
 
@@ -20,15 +21,14 @@ export class DisplayScreenComponent implements OnInit {
     }, 1000);
   }
 
-  getMessage(player): string {
-    if (player.matches != 15 && player.time == '00:00')
-      return this.losingMessage();
+  getMessage(): string {
+    if (this.showMessage) return this.losingMessage();
 
     return this.winningMessage();
   }
 
   losingMessage(): string {
-    return 'Unlucky, Try Again?';
+    return 'Sorry! You lost the game';
   }
 
   winningMessage(): string {

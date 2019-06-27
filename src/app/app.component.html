@@ -1,2 +1,17 @@
-<app-timer></app-timer>
-<app-cards></app-cards>
+{{ isTimesUp }}
+<app-timer
+  (timesUpEvent)="isTimesUp = $event"
+  [stopTimer]="wonGame"
+></app-timer>
+<app-cards
+  [flipAllCards]="isTimesUp"
+  (cardsMatchedEvent)="wonGame = $event"
+></app-cards>
+
+<div *ngIf="wonGame">
+  <app-display-screen [showMessage]="wonGame"></app-display-screen>
+</div>
+
+<div *ngIf="isTimesUp">
+  <app-display-screen [showMessage]="isTimesUp"></app-display-screen>
+</div>
