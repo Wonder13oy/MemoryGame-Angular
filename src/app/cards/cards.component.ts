@@ -15,16 +15,20 @@ export class CardsComponent implements OnInit {
   cardData: CardsService;
   comparedCards: Card[] = [];
   previousCard: Card;
-
-  matches: number = 0;
+  turns: number;
+  clicks: number;
+  matches: number;
 
   //Component interaction
   @Input() isTimesUp: boolean = false;
-  @Output() public cardsMatchedEvent: EventEmitter<
-    Boolean
-  > = new EventEmitter();
+  @Output() cardsMatchedEvent: EventEmitter<Boolean> = new EventEmitter();
+  @Output() numberOfTurnsEvent: EventEmitter<Number> = new EventEmitter();
 
-  constructor() {}
+  constructor() {
+    this.turns = 0;
+    this.clicks = 0;
+    this.matches = 0;
+  }
 
   ngOnInit() {
     this.cardData = new CardsService();
@@ -33,6 +37,12 @@ export class CardsComponent implements OnInit {
   }
 
   flipCard(card: Card): void {
+    //Counting number of turns a player has done
+    this.clicks++;
+    if (this.clicks % 2 === 0) {
+      this.turns++;
+    }
+
     if (card.clicked) {
       return;
     }
@@ -60,6 +70,7 @@ export class CardsComponent implements OnInit {
           console.log('All cards are matched');
 
           this.cardsMatchedEvent.emit(true);
+          this.numberOfTurnsEvent.emit(this.turns);
         }
       }, 400);
     }
