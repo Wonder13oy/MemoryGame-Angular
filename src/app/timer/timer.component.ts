@@ -13,11 +13,14 @@ export class TimerComponent implements OnInit {
   private minLeft = false;
   private secLeft = false;
   private counter;
+
+  //Component Interaction
   @Input() stopTimer: Boolean;
+  @Output() timeTaken: EventEmitter<String> = new EventEmitter();
   @Output() timesUpEvent: EventEmitter<Boolean> = new EventEmitter();
 
   constructor() {
-    this.min = 2;
+    this.min = 1;
     this.sec = 60;
 
     this.startCountDown();
@@ -65,6 +68,12 @@ export class TimerComponent implements OnInit {
 
   stopCountDown(): void {
     clearInterval(this.counter);
+    this.min = 1 - this.min;
+    this.sec = 60 - this.sec;
+
+    this.timeTaken.emit(`${this.addZero(this.min)}:${this.addZero(this.sec)}`);
+    console.log(`It took ${this.addZero(this.min)}:${this.addZero(this.sec)}`);
+
     console.log('Count down stopped');
   }
 

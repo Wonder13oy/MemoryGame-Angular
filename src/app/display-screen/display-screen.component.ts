@@ -9,6 +9,8 @@ export class DisplayScreenComponent implements OnInit {
   message: string;
   @Input() showMessage: boolean;
   @Input() isTimesUp: boolean = false;
+  @Input() numberOfTurns: number;
+  @Input() timeTaken: string;
 
   constructor() {}
 
@@ -33,5 +35,9 @@ export class DisplayScreenComponent implements OnInit {
 
   winningMessage(): string {
     return 'Congratulations!';
+  }
+
+  playerStats(): string {
+    return `You had ${this.numberOfTurns} turns and took you ${this.timeTaken}`;
   }
 }

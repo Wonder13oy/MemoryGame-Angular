@@ -9,4 +9,6 @@ export class AppComponent {
   title = 'Memory Game';
   wonGame: boolean;
   isTimesUp: boolean;
+  numberOfTurns: number;
+  timeTaken: string;
 }
