@@ -1,7 +1,6 @@
 <div class="pop-up" *ngIf="isTimesUp">
   <div class="container">
     <p>{{ losingMessage() }}</p>
-    <p>{{ playerStats() }}</p>
     <button id="try-again" (click)="reloadPage()">Try Again</button>
   </div>
 </div>
