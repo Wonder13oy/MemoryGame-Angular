@@ -4,11 +4,12 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-row-gap: 1px;
   grid-column-gap: 1px;
+  box-sizing: border-box;
 }
 
 .card {
   height: calc(25% - 5px);
-  position: absolute;
+  position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform 0.5s;

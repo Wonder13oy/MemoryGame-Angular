@@ -2,7 +2,6 @@
 html,
 body {
   background-image: url('./assets/pics/avengers.jpg');
-  /* background-color: black; */
   background-size: 100vh;
   background-blend-mode: luminosity;
   background-repeat: inherit;

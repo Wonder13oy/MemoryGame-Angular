@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Card } from './../cardModal';
-import { CARDS } from './../cardPack';
-import { CardsService } from './../cards.service';
+import { Card } from './../../cardModal';
+// import { CARDS } from './../cardPack';
+import { CardsService } from './../../services/cards.service';
 
 @Component({
   selector: 'app-cards',
@@ -12,7 +12,6 @@ export class CardsComponent implements OnInit {
   //Card variables
   firstCard: Card;
   cards: Card[];
-  cardData: CardsService;
   comparedCards: Card[] = [];
   previousCard: Card;
   turns: number;
@@ -24,14 +23,13 @@ export class CardsComponent implements OnInit {
   @Output() cardsMatchedEvent: EventEmitter<Boolean> = new EventEmitter();
   @Output() numberOfTurnsEvent: EventEmitter<Number> = new EventEmitter();
 
-  constructor() {
+  constructor(private cardData: CardsService) {
     this.turns = 0;
     this.clicks = 0;
-    this.matches = 0;
+    this.matches = 15;
   }
 
   ngOnInit() {
-    this.cardData = new CardsService();
     this.cards = this.cardData.getCards();
     this.shuffleCards(this.cards);
   }

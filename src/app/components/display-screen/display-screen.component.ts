@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { UserStatsService } from './../../services/user-stats.service';
 
 @Component({
   selector: 'app-display-screen',
@@ -7,14 +8,23 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DisplayScreenComponent implements OnInit {
   message: string;
+  name: string;
   @Input() showMessage: boolean;
   @Input() isTimesUp: boolean = false;
   @Input() numberOfTurns: number;
   @Input() timeTaken: string;
 
-  constructor() {}
+  constructor(private userStatsService: UserStatsService) {}
 
   ngOnInit() {}
+
+  addUser(): void {
+    const user = {
+      name: this.name,
+      time: this.timeTaken,
+      turns: this.numberOfTurns,
+    };
+  }
 
   reloadPage(): void {
     console.log('Page reloading');

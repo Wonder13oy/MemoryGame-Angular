@@ -1,20 +1,7 @@
 * {
-  width: 60vw;
-  height: 1vh;
+  height: 100vh;
   margin: 5px;
   position: relative;
-  transform: scale(1);
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
-}
-
-*:active {
-  transform: scale(0.97);
-  transition: transform 0.2s;
-}
-
-*.flip {
-  transform: rotateY(180deg);
 }
 
 body {

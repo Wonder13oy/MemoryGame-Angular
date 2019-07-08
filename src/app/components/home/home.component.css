@@ -1,0 +1,11 @@
+body {
+  position: absolute;
+}
+
+#displayScreen {
+  position: absolute;
+}
+
+app-cards {
+  size: 50px;
+}

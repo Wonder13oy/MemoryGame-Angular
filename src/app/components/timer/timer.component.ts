@@ -20,16 +20,16 @@ export class TimerComponent implements OnInit {
   @Output() timesUpEvent: EventEmitter<Boolean> = new EventEmitter();
 
   constructor() {
-    this.min = 1;
-    this.sec = 60;
-
-    this.startCountDown();
+    this.min = 0;
+    this.sec = 5;
   }
 
   ngOnInit() {
     window.onload = () => {
       this.time = document.getElementById('time');
     };
+
+    this.startCountDown();
   }
   startCountDown(): void {
     console.log('Starting count down...');
