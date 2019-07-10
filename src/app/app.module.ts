@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes, Route } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CardsComponent } from './components/cards/cards.component';
@@ -31,7 +32,12 @@ const appRoutes: Routes = [
     HomeComponent,
     NavbarComponent,
   ],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+  ],
   providers: [CardsService, UserStatsService],
   bootstrap: [AppComponent],
 })

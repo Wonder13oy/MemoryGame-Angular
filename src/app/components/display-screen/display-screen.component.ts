@@ -24,6 +24,15 @@ export class DisplayScreenComponent implements OnInit {
       time: this.timeTaken,
       turns: this.numberOfTurns,
     };
+
+    console.log(user);
+
+    this.userStatsService
+      .registerUser(user)
+      .subscribe(
+        data => console.log('Success', data),
+        err => console.log('You got an error', err),
+      );
   }
 
   reloadPage(): void {
