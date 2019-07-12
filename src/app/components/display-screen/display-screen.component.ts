@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserStatsService } from './../../services/user-stats.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-display-screen',
@@ -14,7 +15,10 @@ export class DisplayScreenComponent implements OnInit {
   @Input() numberOfTurns: number;
   @Input() timeTaken: string;
 
-  constructor(private userStatsService: UserStatsService) {}
+  constructor(
+    private userStatsService: UserStatsService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {}
 
@@ -27,12 +31,12 @@ export class DisplayScreenComponent implements OnInit {
 
     console.log(user);
 
-    this.userStatsService
-      .registerUser(user)
-      .subscribe(
-        data => console.log('Success', data),
-        err => console.log('You got an error', err),
-      );
+    this.userStatsService.registerUser(user).subscribe(
+      data => {
+        this.router.navigate(['/leaderboard/time']);
+      },
+      err => console.log('You got an error', err),
+    );
   }
 
   reloadPage(): void {

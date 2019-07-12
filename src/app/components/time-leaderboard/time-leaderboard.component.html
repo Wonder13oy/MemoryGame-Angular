@@ -1,6 +1,10 @@
 <table class="leaderboard">
   <tr>
-    <td>Name</td>
-    <td>Time</td>
+    <th>Name</th>
+    <th>Time</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{ user.name }}</td>
+    <td>{{ user.time }}</td>
   </tr>
 </table>

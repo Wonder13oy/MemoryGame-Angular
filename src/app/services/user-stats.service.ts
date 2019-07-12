@@ -4,15 +4,15 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { map, catchError } from 'rxjs/operators';
-// import 'rxjs/Rx';
+import { tap, map, catchError } from 'rxjs/operators';
+import { Leaderboard } from '../leaderboardInterface';
 import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserStatsService {
-  private _url = 'http://localhost:3000/leaderboard/update_score';
+  private _url;
 
   constructor(private http: HttpClient) {}
 
@@ -29,6 +29,30 @@ export class UserStatsService {
   registerUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    this._url = 'http://localhost:3000/leaderboard/update_score';
+
     return this.http.post<any>(this._url, user, { headers: headers });
+  }
+
+  //Return all users' times
+  getUserTimes() {
+    this._url = 'http://localhost:3000/leaderboard/time';
+    let promise = this.http
+      .get(this._url)
+      .pipe(tap(_ => console.log('fetched the leaderboard')));
+    console.log(promise);
+
+    return promise;
+  }
+
+  //Return all users' turns
+  getUserTurns() {
+    this._url = 'http://localhost:3000/leaderboard/turns';
+    let promise = this.http.get(this._url);
+    console.log('getTurns');
+
+    console.log(promise);
+
+    return promise;
   }
 }

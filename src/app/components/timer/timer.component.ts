@@ -26,6 +26,8 @@ export class TimerComponent implements OnInit {
 
   ngOnInit() {
     window.onload = () => {
+      console.log('Window Loading');
+
       this.time = document.getElementById('time');
     };
 

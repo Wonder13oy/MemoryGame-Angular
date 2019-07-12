@@ -1,6 +1,12 @@
 <table class="leaderboard">
   <tr>
-    <td>Name</td>
-    <td>Number Of Turns</td>
+    <th>Name</th>
+    <th>Turns</th>
+  </tr>
+  <tr *ngIf="users">
+    There are users
+  </tr>
+  <tr *ngIf="!users">
+    Empty leaderboard
   </tr>
 </table>
