@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserStatsService } from '../../services/user-stats.service';
 import { Router } from '@angular/router';
 import { Leaderboard } from '../../leaderboardInterface';
+import { SortService } from '../../services/sort.service';
 // import {  } from '../../services/'
 
 @Component({
@@ -11,44 +12,24 @@ import { Leaderboard } from '../../leaderboardInterface';
 })
 export class TimeLeaderboardComponent implements OnInit {
   users: Object;
+  topTenList: Object;
 
-  constructor(private userStats: UserStatsService, private router: Router) {}
-
-  ngOnInit() {
-    this.userStats.getUserTimes().subscribe({
-      next(response) {
-        this.users = response;
-        console.log(this.users);
-      },
-      error(err) {
-        console.error('Error: ' + err);
-      },
-      complete() {
-        console.log('Completed');
-      },
-    });
+  constructor(
+    private userStats: UserStatsService,
+    private router: Router,
+    private sort: SortService,
+  ) {
+    // this.topTenList = this.getTopTen(this.users);
   }
 
-  getTopTen(users) {
-    const topTen = [];
-    let i = 0;
-
-    while (i < users.length - 1) {
-      i++;
-
-      if (users[i] > users[i + 1]) {
-        let temp = users[i];
-        users[i] = users[i + 1];
-        users[i + 1] = users[i];
-
-        i = 0;
-      }
-    }
-
-    for (let i = 0; i < 10; i++) {
-      topTen.push(users[i]);
-    }
-
-    return topTen;
+  ngOnInit() {
+    this.userStats.getUserTimes().subscribe(
+      data => {
+        this.users = data;
+      },
+      err => {
+        console.log(err);
+      },
+    );
   }
 }

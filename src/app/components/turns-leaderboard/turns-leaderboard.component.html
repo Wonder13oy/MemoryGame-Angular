@@ -1,12 +1,12 @@
-<table class="leaderboard">
+<table class="leaderboard" *ngIf="users">
   <tr>
     <th>Name</th>
     <th>Turns</th>
   </tr>
-  <tr *ngIf="users">
-    There are users
-  </tr>
-  <tr *ngIf="!users">
-    Empty leaderboard
+  <tr *ngFor="let user of users">
+    <td>{{ user.name }}</td>
+    <td>{{ user.turns }}</td>
   </tr>
 </table>
+
+<div *ngIf="!users">Empty Leaderboard</div>

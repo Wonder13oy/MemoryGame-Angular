@@ -22,6 +22,8 @@ export class TimerComponent implements OnInit {
   constructor() {
     this.min = 1;
     this.sec = 60;
+
+    this.startCountDown();
   }
 
   ngOnInit() {
@@ -30,8 +32,6 @@ export class TimerComponent implements OnInit {
 
       this.time = document.getElementById('time');
     };
-
-    this.startCountDown();
   }
   startCountDown(): void {
     console.log('Starting count down...');
@@ -91,26 +91,6 @@ export class TimerComponent implements OnInit {
   //Time
   getTime(): string {
     return `${this.addZero(this.min)}:${this.addZero(this.sec)}`;
-  }
-
-  setTime(min: number, sec: number): void {
-    this.setMinutes(min);
-    this.setSeconds(sec);
-  }
-
-  //Minutes
-  private setMinutes(min: number): void {
-    this.min = min;
-  }
-
-  //Seconds
-  private setSeconds(sec: number) {
-    if (sec >= 60 && this.min !== 0) {
-      this.sec = sec % 60;
-      this.min = Math.floor(sec / 60);
-    } else {
-      this.sec = sec;
-    }
   }
 
   //Add Zeros
