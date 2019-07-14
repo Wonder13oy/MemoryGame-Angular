@@ -11,7 +11,7 @@ describe('CardsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CardsComponent, DisplayScreenComponent]
+      declarations: [CardsComponent, DisplayScreenComponent],
     }).compileComponents();
   }));
 
@@ -21,7 +21,7 @@ describe('CardsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 

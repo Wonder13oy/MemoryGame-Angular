@@ -1,0 +1,12 @@
+<table class="leaderboard" *ngIf="users">
+  <tr>
+    <th>Name</th>
+    <th>Time(seconds)</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{ user.name }}</td>
+    <td>{{ user.time }}</td>
+  </tr>
+</table>
+
+<div *ngIf="!users">Empty Leaderboard</div>

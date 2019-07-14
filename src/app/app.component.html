@@ -1,27 +1,4 @@
-{{ isTimesUp }}
-<app-timer
-  (timesUpEvent)="isTimesUp = $event"
-  [stopTimer]="wonGame"
-  (timeTaken)="timeTaken = $event"
-></app-timer>
-<app-cards
-  [isTimesUp]="isTimesUp"
-  (cardsMatchedEvent)="wonGame = $event"
-  (numberOfTurnsEvent)="numberOfTurns = $event"
-></app-cards>
-
-<div *ngIf="wonGame">
-  <app-display-screen
-    [showMessage]="wonGame"
-    [numberOfTurns]="numberOfTurns"
-    [timeTaken]="timeTaken"
-  ></app-display-screen>
-</div>
-
-<div *ngIf="isTimesUp">
-  <app-display-screen
-    [isTimesUp]="isTimesUp"
-    [numberOfTurns]="numberOfTurns"
-    [timeTaken]="timeTaken"
-  ></app-display-screen>
+<app-navbar></app-navbar>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>

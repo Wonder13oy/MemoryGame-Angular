@@ -1,0 +1,12 @@
+table {
+  border: solid 1px black;
+  margin: auto;
+  align-content: center;
+  height: 60vh;
+  width: 70vw;
+}
+
+th {
+  border: solid 1px black;
+  height: 10vh;
+}
