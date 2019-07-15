@@ -60,17 +60,7 @@ export class CardsComponent implements OnInit {
 
     //Only two cards are selected
     if (this.comparedCards.length == 2) {
-      setTimeout(() => {
-        this.checkMatch();
-
-        //When all cards matched, timer is stopped
-        if (this.matches === 15) {
-          console.log('All cards are matched');
-
-          this.cardsMatchedEvent.emit(true);
-          this.numberOfTurnsEvent.emit(this.turns);
-        }
-      }, 400);
+      this.compareCards();
     }
   }
 
@@ -86,6 +76,20 @@ export class CardsComponent implements OnInit {
       this.comparedCards.forEach(card => (card.clicked = !card.clicked));
     }
     this.comparedCards = [];
+  }
+
+  compareCards() {
+    setTimeout(() => {
+      this.checkMatch();
+
+      //When all cards matched, timer is stopped
+      if (this.matches === 15) {
+        console.log('All cards are matched');
+
+        this.cardsMatchedEvent.emit(true);
+        this.numberOfTurnsEvent.emit(this.turns);
+      }
+    }, 400);
   }
 
   //Randomise cards' postions
