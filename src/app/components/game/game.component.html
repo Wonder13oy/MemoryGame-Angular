@@ -1,0 +1,12 @@
+<app-timer
+  (timesUpEvent)="isTimesUp = $event"
+  [stopTimer]="wonGame"
+  (timeTaken)="timeTaken = $event"
+></app-timer>
+<app-cards
+  [isTimesUp]="isTimesUp"
+  [userNameEntered]="startGame"
+  (cardsMatchedEvent)="wonGame = $event"
+  (numberOfTurnsEvent)="numberOfTurns = $event"
+>
+</app-cards>

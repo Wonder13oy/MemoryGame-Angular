@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserStatsService } from './../../services/user-stats.service';
 import { Router } from '@angular/router';
+import { CurrentPlayerService } from '../../services/current-player.service';
 
 @Component({
   selector: 'app-display-screen',
@@ -10,33 +11,44 @@ import { Router } from '@angular/router';
 export class DisplayScreenComponent implements OnInit {
   message: string;
   name: string;
-  @Input() showMessage: boolean;
-  @Input() isTimesUp: boolean = false;
+  @Output() nameEntered: EventEmitter<boolean> = new EventEmitter();
   @Input() numberOfTurns: number;
   @Input() timeTaken: string;
 
   constructor(
     private userStatsService: UserStatsService,
     private router: Router,
+    private player: CurrentPlayerService,
   ) {}
 
   ngOnInit() {}
 
-  addUser(): void {
-    const user = {
-      name: this.name,
-      time: this.timeTaken,
-      turns: this.numberOfTurns,
-    };
+  startGame() {
+    if (this.name === '' || this.name === null) this.restartGame();
 
-    console.log(user);
+    this.player = new CurrentPlayerService(this.name);
+    this.nameEntered.emit(true);
 
-    this.userStatsService.registerUser(user).subscribe(
-      data => {
-        this.router.navigate(['/leaderboard/time']);
-      },
-      err => console.log('You got an error', err),
-    );
+    console.log('Game has started');
+    this.router.navigate(['/game']);
+
+    // const user = {
+    //   name: this.name,
+    //   time: this.timeTaken,
+    //   turns: this.numberOfTurns,
+    // };
+
+    // this.userStatsService.registerUser(user).subscribe(
+    //   data => {
+    //     this.router.navigate(['/leaderboard/time']);
+    //   },
+    //   err => console.log('You got an error', err),
+    // );
+  }
+
+  restartGame() {
+    window.alert('Please enter your name!');
+    this.reloadPage();
   }
 
   reloadPage(): void {
@@ -47,8 +59,6 @@ export class DisplayScreenComponent implements OnInit {
   }
 
   getMessage(): string {
-    if (this.isTimesUp) return this.losingMessage();
-
     return this.winningMessage();
   }
 

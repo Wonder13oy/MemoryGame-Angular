@@ -3,7 +3,7 @@ body {
 }
 
 #displayScreen {
-  position: absolute;
+  position: relative;
 }
 
 app-cards {

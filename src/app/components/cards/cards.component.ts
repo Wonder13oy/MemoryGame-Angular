@@ -20,6 +20,7 @@ export class CardsComponent implements OnInit {
 
   //Component interaction
   @Input() isTimesUp: boolean = false;
+  @Input() userNameEntered: boolean = true;
   @Output() cardsMatchedEvent: EventEmitter<Boolean> = new EventEmitter();
   @Output() numberOfTurnsEvent: EventEmitter<Number> = new EventEmitter();
 

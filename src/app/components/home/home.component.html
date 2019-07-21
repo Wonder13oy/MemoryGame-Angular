@@ -1,29 +1,22 @@
-<div *ngIf="isTimesUp" id="displayScreen">
+<div id="displayScreen" *ngIf="!userNameEntered">
   <app-display-screen
-    [isTimesUp]="isTimesUp"
+    (userNameEntered)="userNameEntered = $event"
     [numberOfTurns]="numberOfTurns"
     [timeTaken]="timeTaken"
   >
   </app-display-screen>
 </div>
-
-<app-timer
-  (timesUpEvent)="isTimesUp = $event"
-  [stopTimer]="wonGame"
-  (timeTaken)="timeTaken = $event"
-></app-timer>
-<app-cards
-  [isTimesUp]="isTimesUp"
-  (cardsMatchedEvent)="wonGame = $event"
-  (numberOfTurnsEvent)="numberOfTurns = $event"
->
-</app-cards>
-
-<div *ngIf="wonGame">
-  <app-display-screen
-    [showMessage]="wonGame"
-    [numberOfTurns]="numberOfTurns"
-    [timeTaken]="timeTaken"
+<div *ngIf="userNameEntered">
+  <app-timer
+    (timesUpEvent)="isTimesUp = $event"
+    [stopTimer]="wonGame"
+    (timeTaken)="timeTaken = $event"
+  ></app-timer>
+  <app-cards
+    [isTimesUp]="isTimesUp"
+    [userNameEntered]="startGame"
+    (cardsMatchedEvent)="wonGame = $event"
+    (numberOfTurnsEvent)="numberOfTurns = $event"
   >
-  </app-display-screen>
+  </app-cards>
 </div>

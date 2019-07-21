@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStatsService } from '../../services/user-stats.service';
-import { SortService } from '../../services/sort.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -12,11 +11,7 @@ export class TurnsLeaderboardComponent implements OnInit {
   users;
   topTen;
 
-  constructor(
-    private http: HttpClient,
-    private userStats: UserStatsService,
-    private sort: SortService,
-  ) {}
+  constructor(private http: HttpClient, private userStats: UserStatsService) {}
 
   ngOnInit() {
     this.userStats.getUserTimes().subscribe(
@@ -27,9 +22,5 @@ export class TurnsLeaderboardComponent implements OnInit {
         console.log(err.status);
       },
     );
-
-    setTimeout(() => {
-      this.topTen = this.sort.getTopTenTurns(this.users);
-    }, 2000);
   }
 }

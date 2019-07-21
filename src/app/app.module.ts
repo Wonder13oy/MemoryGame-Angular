@@ -14,9 +14,11 @@ import { TimeLeaderboardComponent } from './components/time-leaderboard/time-lea
 import { TurnsLeaderboardComponent } from './components/turns-leaderboard/turns-leaderboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { GameComponent } from './components/game/game.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'game', component: GameComponent },
   { path: 'leaderboard/time', component: TimeLeaderboardComponent },
   { path: 'leaderboard/turns', component: TurnsLeaderboardComponent },
 ];
@@ -31,6 +33,7 @@ const appRoutes: Routes = [
     TurnsLeaderboardComponent,
     HomeComponent,
     NavbarComponent,
+    GameComponent,
   ],
   imports: [
     BrowserModule,
