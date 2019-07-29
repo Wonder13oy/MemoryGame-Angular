@@ -8,7 +8,9 @@ export class CurrentPlayerService {
   private time: String;
   private turns: Number;
 
-  constructor(name: String) {
+  constructor() {}
+
+  setName(name: String) {
     this.name = name;
   }
 

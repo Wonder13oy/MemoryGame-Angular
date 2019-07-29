@@ -10,6 +10,8 @@ import { DisplayScreenComponent } from './components/display-screen/display-scre
 import { TimerComponent } from './components/timer/timer.component';
 import { CardsService } from './services/cards.service';
 import { UserStatsService } from './services/user-stats.service';
+import { CurrentPlayerService } from './services/current-player.service';
+
 import { TimeLeaderboardComponent } from './components/time-leaderboard/time-leaderboard.component';
 import { TurnsLeaderboardComponent } from './components/turns-leaderboard/turns-leaderboard.component';
 import { HomeComponent } from './components/home/home.component';
@@ -41,7 +43,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
   ],
-  providers: [CardsService, UserStatsService],
+  providers: [CardsService, UserStatsService, CurrentPlayerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserStatsService } from './../../services/user-stats.service';
 import { Router } from '@angular/router';
 import { CurrentPlayerService } from '../../services/current-player.service';
@@ -11,9 +11,6 @@ import { CurrentPlayerService } from '../../services/current-player.service';
 export class DisplayScreenComponent implements OnInit {
   message: string;
   name: string;
-  @Output() nameEntered: EventEmitter<boolean> = new EventEmitter();
-  @Input() numberOfTurns: number;
-  @Input() timeTaken: string;
 
   constructor(
     private userStatsService: UserStatsService,
@@ -24,31 +21,21 @@ export class DisplayScreenComponent implements OnInit {
   ngOnInit() {}
 
   startGame() {
-    if (this.name === '' || this.name === null) this.restartGame();
+    if (this.name == undefined || this.name === null) {
+      this.restartGame();
+    }
 
-    this.player = new CurrentPlayerService(this.name);
-    this.nameEntered.emit(true);
+    this.player = new CurrentPlayerService();
 
-    console.log('Game has started');
+    this.player.setName(this.name);
+
+    console.log(this.player.getName());
     this.router.navigate(['/game']);
-
-    // const user = {
-    //   name: this.name,
-    //   time: this.timeTaken,
-    //   turns: this.numberOfTurns,
-    // };
-
-    // this.userStatsService.registerUser(user).subscribe(
-    //   data => {
-    //     this.router.navigate(['/leaderboard/time']);
-    //   },
-    //   err => console.log('You got an error', err),
-    // );
   }
 
   restartGame() {
-    window.alert('Please enter your name!');
-    this.reloadPage();
+    // window.alert('Please Enter your name!');
+    this.router.navigate(['/']);
   }
 
   reloadPage(): void {
@@ -68,9 +55,5 @@ export class DisplayScreenComponent implements OnInit {
 
   winningMessage(): string {
     return 'Congratulations!';
-  }
-
-  playerStats(): string {
-    return `You had ${this.numberOfTurns} turns and took you ${this.timeTaken}`;
   }
 }

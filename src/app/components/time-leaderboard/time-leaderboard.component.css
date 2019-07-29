@@ -1,5 +1,7 @@
 table {
-  border: solid 1px black;
+  border: solid 1px white;
+  color: white;
+  background-color: rgba(24, 112, 243, 0.281);
   margin: auto;
   align-content: center;
   height: 60vh;
@@ -7,6 +9,11 @@ table {
 }
 
 th {
-  border: solid 1px black;
+  border: solid 1px white;
+  color: white;
   height: 10vh;
+}
+
+tr:hover {
+  background-color: rgba(4, 48, 241, 0.733);
 }

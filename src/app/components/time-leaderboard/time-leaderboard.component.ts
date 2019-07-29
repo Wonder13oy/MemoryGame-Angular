@@ -13,7 +13,9 @@ export class TimeLeaderboardComponent implements OnInit {
   users: Object;
   topTenList: Object;
 
-  constructor(private userStats: UserStatsService, private router: Router) {}
+  constructor(private userStats: UserStatsService, private router: Router) {
+    console.log('leaderboard', document.getElementsByTagName('tr')[1]);
+  }
 
   ngOnInit() {
     this.userStats.getUserTimes().subscribe(
