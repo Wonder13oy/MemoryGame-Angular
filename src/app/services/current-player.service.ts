@@ -47,8 +47,6 @@ export class CurrentPlayerService {
     this.userStats.registerUser(user).subscribe(
       data => {
         console.log(data);
-
-        // this.router.navigate(['/leaderboard/time']);
       },
       err => console.log('You got an error', err),
     );

@@ -11,11 +11,5 @@ export class GameComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    window.onload = () => {
-      console.log('Window Loading');
-
-      this.timeDisplay = document.getElementById('timer');
-    };
-  }
+  ngOnInit() {}
 }

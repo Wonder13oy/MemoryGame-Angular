@@ -25,6 +25,7 @@ export class TimeLeaderboardComponent implements OnInit {
       data => {
         this.users = data;
 
+        // Highlighting the current player's position if on leaderboard
         for (const i in this.users) {
           if (this.users[i].name === this.currentPlayer.getName()) {
             setTimeout(() => {

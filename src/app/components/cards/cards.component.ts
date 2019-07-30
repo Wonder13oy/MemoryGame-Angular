@@ -35,7 +35,7 @@ export class CardsComponent implements OnInit {
   ) {
     this.turns = 0;
     this.clicks = 0;
-    this.matches = 15;
+    this.matches = 0;
   }
 
   ngOnInit() {
@@ -103,23 +103,6 @@ export class CardsComponent implements OnInit {
       }
     }, 400);
   }
-
-  // addUserToLeaderboard() {
-  //   const user = {
-  //     name: this.name,
-  //     time: this.timeTaken,
-  //     turns: this.numberOfTurns,
-  //   };
-
-  //   console.log(user);
-
-  //   this.userStatsService.registerUser(user).subscribe(
-  //     data => {
-  //       this.router.navigate(['/leaderboard/time']);
-  //     },
-  //     err => console.log('You got an error', err),
-  //   );
-  // }
 
   //Randomise cards' postions
   shuffleCards(array) {

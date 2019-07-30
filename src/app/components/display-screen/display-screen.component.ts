@@ -26,31 +26,16 @@ export class DisplayScreenComponent implements OnInit {
     }
 
     this.player.setName(this.name);
-    console.log(this.player.getName());
     this.router.navigate(['/game']);
   }
 
   restartGame() {
-    // window.alert('Please Enter your name!');
     this.router.navigate(['/']);
   }
 
   reloadPage(): void {
-    console.log('Page reloading');
     setTimeout(() => {
       location.reload();
     }, 1000);
-  }
-
-  getMessage(): string {
-    return this.winningMessage();
-  }
-
-  losingMessage(): string {
-    return 'Sorry! You lost the game';
-  }
-
-  winningMessage(): string {
-    return 'Congratulations!';
   }
 }

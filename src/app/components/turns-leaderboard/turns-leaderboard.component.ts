@@ -23,6 +23,7 @@ export class TurnsLeaderboardComponent implements OnInit {
       data => {
         this.users = data;
 
+        // Highlight player's postion if on leaderboard
         for (const i in this.users) {
           if (this.users[i].name === this.currentPlayer.getName()) {
             setTimeout(() => {

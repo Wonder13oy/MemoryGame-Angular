@@ -20,16 +20,7 @@ export class TimerService {
       this.sec--;
       this.time.innerHTML = this.getTime();
 
-      //End of the timer
-      // if (this.stopTimer == true) {
-      //   this.stopCountDown();
-      // }
-
-      // if (this.getTime() === '00:00') {
-      //   this.stopCountDown();
-      //   this.timesUpEvent.emit(true);
-      // }
-
+      // Convert seconds to minutes
       if (this.sec === 0) {
         this.min--;
         this.sec = 60;
@@ -64,8 +55,6 @@ export class TimerService {
       this.min++;
       this.sec = 0;
     }
-
-    // this.timeTaken.emit(`${this.addZero(this.min)}:${this.addZero(this.sec)}`);
   }
 
   //Time
