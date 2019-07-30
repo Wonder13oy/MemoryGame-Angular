@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Card } from './../../cardModal';
-// import { CARDS } from './../cardPack';
+import { Router } from '@angular/router';
 import { CardsService } from './../../services/cards.service';
+import { UserStatsService } from '../../services/user-stats.service';
+import { CurrentPlayerService } from '../../services/current-player.service';
 
 @Component({
   selector: 'app-cards',
@@ -21,13 +23,19 @@ export class CardsComponent implements OnInit {
   //Component interaction
   @Input() isTimesUp: boolean = false;
   @Input() userNameEntered: boolean = true;
+  @Input() timeTaken: String;
   @Output() cardsMatchedEvent: EventEmitter<Boolean> = new EventEmitter();
   @Output() numberOfTurnsEvent: EventEmitter<Number> = new EventEmitter();
 
-  constructor(private cardData: CardsService) {
+  constructor(
+    private cardData: CardsService,
+    private router: Router,
+    private userStatsService: UserStatsService,
+    private player: CurrentPlayerService,
+  ) {
     this.turns = 0;
     this.clicks = 0;
-    this.matches = 0;
+    this.matches = 15;
   }
 
   ngOnInit() {
@@ -87,11 +95,31 @@ export class CardsComponent implements OnInit {
       if (this.matches === 15) {
         console.log('All cards are matched');
 
+        this.player.setUserClicks(this.turns);
+        console.log(this.player.getUserTime());
+
         this.cardsMatchedEvent.emit(true);
         this.numberOfTurnsEvent.emit(this.turns);
       }
     }, 400);
   }
+
+  // addUserToLeaderboard() {
+  //   const user = {
+  //     name: this.name,
+  //     time: this.timeTaken,
+  //     turns: this.numberOfTurns,
+  //   };
+
+  //   console.log(user);
+
+  //   this.userStatsService.registerUser(user).subscribe(
+  //     data => {
+  //       this.router.navigate(['/leaderboard/time']);
+  //     },
+  //     err => console.log('You got an error', err),
+  //   );
+  // }
 
   //Randomise cards' postions
   shuffleCards(array) {

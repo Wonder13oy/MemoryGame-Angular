@@ -13,6 +13,9 @@ import { ConfigService } from './config.service';
 })
 export class UserStatsService {
   private _url;
+  private _username;
+  private _userTime;
+  private _userClicks;
 
   constructor(private http: HttpClient) {}
 

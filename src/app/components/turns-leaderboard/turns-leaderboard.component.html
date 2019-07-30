@@ -3,7 +3,7 @@
     <th>Name</th>
     <th>Turns</th>
   </tr>
-  <tr *ngFor="let user of users">
+  <tr *ngFor="let user of users" id="{{ user.name }}">
     <td>{{ user.name }}</td>
     <td>{{ user.turns }}</td>
   </tr>

@@ -6,6 +6,7 @@
 <!-- <div id="timer"></div> -->
 <app-cards
   [isTimesUp]="isTimesUp"
+  [timeTaken]="timeTaken"
   [userNameEntered]="startGame"
   (cardsMatchedEvent)="wonGame = $event"
   (numberOfTurnsEvent)="numberOfTurns = $event"

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CurrentPlayerService } from '../../services/current-player.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-timer',
@@ -19,12 +21,7 @@ export class TimerComponent implements OnInit {
   @Output() timeTaken: EventEmitter<String> = new EventEmitter();
   @Output() timesUpEvent: EventEmitter<Boolean> = new EventEmitter();
 
-  constructor() {
-    // window.onload = () => {
-    //   console.log('Window Loading');
-
-    //   this.time = document.getElementById('time');
-    // };
+  constructor(private player: CurrentPlayerService, private router: Router) {
     this.min = 1;
     this.sec = 60;
 
@@ -70,9 +67,14 @@ export class TimerComponent implements OnInit {
   stopCountDown(): void {
     clearInterval(this.counter);
     this.calculateTimeRemaining();
-    console.log(`It took ${this.addZero(this.min)}:${this.addZero(this.sec)}`);
+    this.player.setUserTime(
+      `${this.addZero(this.min)}: ${this.addZero(this.sec)}`,
+    );
+    this.player.addNewPlayer();
 
-    console.log('Count down stopped');
+    setTimeout(() => {
+      this.router.navigate(['/leaderboard/time']);
+    }, 1000);
   }
 
   calculateTimeRemaining(): void {

@@ -25,10 +25,7 @@ export class DisplayScreenComponent implements OnInit {
       this.restartGame();
     }
 
-    this.player = new CurrentPlayerService();
-
     this.player.setName(this.name);
-
     console.log(this.player.getName());
     this.router.navigate(['/game']);
   }
