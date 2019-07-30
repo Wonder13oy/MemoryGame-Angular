@@ -9,7 +9,6 @@ body.pop-up {
 * {
   font-family: Calibri, sans-serif;
   font-weight: normal;
-  color: #fff;
 }
 
 p {
@@ -28,6 +27,7 @@ p {
 
 .pop-up .container {
   background: #012d57;
+  color: white;
   padding: 30px;
   border-radius: 15px;
   position: absolute;

@@ -1,18 +1,9 @@
-<div class="pop-up" *ngIf="isTimesUp">
+<div class="pop-up">
   <div class="container">
-    <p>{{ losingMessage() }}</p>
-    <button id="try-again" (click)="reloadPage()">Try Again</button>
-  </div>
-</div>
-<div class="pop-up" *ngIf="showMessage">
-  <div class="container">
-    <p>{{ winningMessage() }}</p>
-
+    <p>What is your name, child of Thanos?</p>
     <div class="userInfo">
-      <label>What is your name, child of Thanos?</label>
       <input type="text" [(ngModel)]="name" name="name" />
-      <input type="submit" value="submit" (click)="addUser()" />
     </div>
-    <button id="try-again" (click)="reloadPage()">Play Again</button>
+    <button id="start-game" (click)="startGame()">Start Game</button>
   </div>
 </div>

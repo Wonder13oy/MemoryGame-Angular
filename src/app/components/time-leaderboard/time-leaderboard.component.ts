@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserStatsService } from '../../services/user-stats.service';
 import { Router } from '@angular/router';
 import { Leaderboard } from '../../leaderboardInterface';
-import { SortService } from '../../services/sort.service';
+import { CurrentPlayerService } from '../../services/current-player.service';
 // import {  } from '../../services/'
 
 @Component({
@@ -12,20 +12,28 @@ import { SortService } from '../../services/sort.service';
 })
 export class TimeLeaderboardComponent implements OnInit {
   users: Object;
-  topTenList: Object;
+  tableRow;
 
   constructor(
     private userStats: UserStatsService,
     private router: Router,
-    private sort: SortService,
-  ) {
-    // this.topTenList = this.getTopTen(this.users);
-  }
+    private currentPlayer: CurrentPlayerService,
+  ) {}
 
   ngOnInit() {
     this.userStats.getUserTimes().subscribe(
       data => {
         this.users = data;
+
+        for (const i in this.users) {
+          if (this.users[i].name === this.currentPlayer.getName()) {
+            setTimeout(() => {
+              document
+                .getElementById(this.users[i].name)
+                .classList.toggle('selected');
+            }, 1000);
+          }
+        }
       },
       err => {
         console.log(err);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStatsService } from '../../services/user-stats.service';
-import { SortService } from '../../services/sort.service';
 import { HttpClient } from '@angular/common/http';
+import { CurrentPlayerService } from '../../services/current-player.service';
 
 @Component({
   selector: 'app-turns-leaderboard',
@@ -15,21 +15,27 @@ export class TurnsLeaderboardComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private userStats: UserStatsService,
-    private sort: SortService,
+    private currentPlayer: CurrentPlayerService,
   ) {}
 
   ngOnInit() {
     this.userStats.getUserTimes().subscribe(
       data => {
         this.users = data;
+
+        for (const i in this.users) {
+          if (this.users[i].name === this.currentPlayer.getName()) {
+            setTimeout(() => {
+              document
+                .getElementById(this.users[i].name)
+                .classList.toggle('selected');
+            }, 1000);
+          }
+        }
       },
       err => {
         console.log(err.status);
       },
     );
-
-    setTimeout(() => {
-      this.topTen = this.sort.getTopTenTurns(this.users);
-    }, 2000);
   }
 }
